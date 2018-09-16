@@ -23,6 +23,10 @@ namespace HttpError
         /// </summary>
         public string ErrorDescription { get; set; }
         /// <summary>
+        /// Store http error occurence date.
+        /// </summary>
+        public DateTime ErrorDate { get; set; }
+        /// <summary>
         /// The class default constructor.
         /// </summary>
         public HttpError() { }
@@ -31,10 +35,12 @@ namespace HttpError
         /// </summary>
         /// <param name="code"> error code </param>
         /// <param name="description"> error description </param>
-        public HttpError(int code, string description)
+        /// <param name="date"> error occurence date </param>
+        public HttpError(int code, string description, DateTime date)
         {
             ErrorCode = code;
             ErrorDescription = description;
+            ErrorDate = date;
         }
         /// <summary>
         /// Compare two objects based on error code.
@@ -76,7 +82,9 @@ namespace HttpError
             {
                 return false;
             }
-            if (ErrorCode == otherError.ErrorCode)
+            if (ErrorCode == otherError.ErrorCode
+                 && ErrorDescription == otherError.ErrorDescription
+                 && ErrorDate == otherError.ErrorDate)
             {
                 return true;
             }
@@ -87,7 +95,8 @@ namespace HttpError
         /// </summary>
         public override string ToString()
         {
-            return ErrorCode.ToString() + " " + ErrorDescription;
+            return ErrorCode.ToString() + " " + ErrorDescription + " "
+                + ErrorDate.ToString();
         }
         /// <summary>
         /// Generate instance hashcode
