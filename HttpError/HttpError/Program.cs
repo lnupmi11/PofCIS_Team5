@@ -10,6 +10,9 @@ namespace HttpError
     {
         static void Main(string[] args)
         {
+            FirstSubTask task = new FirstSubTask("enterPathOfYourFileHere");
+            task.Run();
+            Console.ReadLine();
         }
     }
 }
