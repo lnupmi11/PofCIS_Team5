@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SecondSubTask.cs" />
     <Compile Include="FirstSubTask.cs" />
     <Compile Include="HttpError.cs" />
     <Compile Include="Program.cs" />
