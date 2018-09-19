@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HttpError
 {
-    class FirstSubTask
+    public class FirstSubTask
     {
         public List<HttpError> HttpErrors { get; }
 

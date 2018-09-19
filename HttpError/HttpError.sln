@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpError", "HttpError\HttpError.csproj", "{384F4815-96E7-4951-B050-D044A6645EC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{11FAEC89-9D1E-467C-B29C-0E428206EAA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{384F4815-96E7-4951-B050-D044A6645EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{384F4815-96E7-4951-B050-D044A6645EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{384F4815-96E7-4951-B050-D044A6645EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11FAEC89-9D1E-467C-B29C-0E428206EAA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11FAEC89-9D1E-467C-B29C-0E428206EAA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11FAEC89-9D1E-467C-B29C-0E428206EAA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11FAEC89-9D1E-467C-B29C-0E428206EAA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
