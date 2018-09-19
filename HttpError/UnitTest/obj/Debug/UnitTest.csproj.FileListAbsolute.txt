@@ -1,0 +1,36 @@
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\UnitTest.dll
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\UnitTest.pdb
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\HttpError.exe
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\HttpError.pdb
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\HttpError.exe.config
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.csprojAssemblyReference.cache
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.csproj.CoreCompileInputs.cache
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.csproj.CopyComplete
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.dll
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.pdb
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\UnitTest.dll
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\UnitTest.pdb
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\HttpError.exe
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\HttpError.pdb
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\HttpError.exe.config
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.csprojAssemblyReference.cache
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.csproj.CopyComplete
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.dll
+C:\Users\user\Desktop\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.pdb
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.dll
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\UnitTest\obj\Debug\UnitTest.pdb

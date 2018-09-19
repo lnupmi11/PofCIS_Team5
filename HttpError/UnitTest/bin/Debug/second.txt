@@ -1,0 +1,1 @@
+During process 1 happend error 404, during process 2 happend both 404 and 400. Error 303 is unknown.

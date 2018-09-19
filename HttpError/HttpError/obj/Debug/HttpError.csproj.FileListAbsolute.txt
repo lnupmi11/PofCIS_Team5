@@ -1,0 +1,19 @@
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\bin\Debug\HttpError.exe.config
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\bin\Debug\HttpError.exe
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\bin\Debug\HttpError.pdb
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\bin\Debug\StyleCop.dll
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\bin\Debug\StyleCop.xml
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csproj.CoreCompileInputs.cache
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csproj.CopyComplete
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.exe
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.pdb
+D:\універ\3 курс\програмування\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csprojAssemblyReference.cache
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\bin\Debug\HttpError.exe.config
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\bin\Debug\HttpError.exe
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\bin\Debug\HttpError.pdb
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\bin\Debug\StyleCop.dll
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\bin\Debug\StyleCop.xml
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csprojResolveAssemblyReference.cache
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.exe
+C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.pdb
