@@ -7,20 +7,41 @@ using System.Threading.Tasks;
 
 namespace HttpError
 {
+    /// <summary>
+    /// Class what implements first subtask.
+    /// </summary>
     public class FirstSubTask
     {
+        /// <summary>
+        /// List of HttpErrors which have been written from file.
+        /// </summary>
         public List<HttpError> HttpErrors { get; }
 
+        /// <summary>
+        /// Stores path of file, where is stored information about errors.
+        /// </summary>
         public string FilePath { get; set; }
 
+        /// <summary>
+        /// The class default constructor.
+        /// </summary>
         public FirstSubTask() : this("") { }
 
+        /// <summary>
+        /// The class constructor with parameters.
+        /// </summary>
         public FirstSubTask(string filePath)
         {
             HttpErrors = new List<HttpError>();
             FilePath = filePath;
         }
 
+        /// <summary>
+        /// Read input text from file.
+        /// </summary>
+        /// <remarks>
+        /// Throws exception if error occurs.
+        /// </remarks>
         public string[] ReadDataFromFile()
         {
             try
@@ -38,7 +59,12 @@ namespace HttpError
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// The main method. Runs the task;
+        /// </summary>
+        /// <remarks>
+        /// Throws exception if error occurs.
+        /// </remarks>
         public void Run()
         {
             try
@@ -55,6 +81,7 @@ namespace HttpError
                         Console.WriteLine($"HttpError hasn't been added. This line is incorrect: \"{line}\" .");
                     }
                 }
+                Console.WriteLine("First task has been ran successfully");
             }
             catch (Exception)
             {
@@ -62,6 +89,12 @@ namespace HttpError
             }
         }
 
+        /// <summary>
+        /// Get data about Http error from line. And return HttpError object.
+        /// </summary>
+        /// <remarks>
+        /// Throws exception if error occurs.
+        /// </remarks>
         public HttpError GetHttpErrorFromLine(string line)
         {
             string[] data = line.Split('-');
@@ -89,11 +122,17 @@ namespace HttpError
             }
         }
 
+        /// <summary>
+        /// Get data about Time from line. And return DateTime object.
+        /// </summary>
+        /// <remarks>
+        /// Throws exception if error occurs.
+        /// </remarks>
         public DateTime GenerateDateTimeObject(string line)
         {
             try
             {
-                string[] dateData = line.Split(',');
+                string[] dateData = line.Split('/');
                 int year = Int32.Parse(dateData[(int)DateRepresentationOrder.year]);
                 int month = Int32.Parse(dateData[(int)DateRepresentationOrder.month]);
                 int day = Int32.Parse(dateData[(int)DateRepresentationOrder.day]);
@@ -113,8 +152,13 @@ namespace HttpError
                 throw new Exception(); ;
             }
         }
-
+        /// <summary>
+        ///  Enum wich represents order of data representing about Http error.
+        /// </summary>
         private enum HttpErrorDataRepresentationOrder { indexOfErrorNumber, indexOfErrorDiscription, indexOfErrorDate }
+        /// <summary>
+        ///  Enum wich represents order of data representing about DateTime. Date: year/month/day/hour/minute/second.
+        /// </summary>
         private enum DateRepresentationOrder { year, month, day, hour, minute, second }
     }
 }

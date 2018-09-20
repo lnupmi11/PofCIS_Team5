@@ -17,3 +17,13 @@ C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csp
 C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csproj.CoreCompileInputs.cache
 C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.exe
 C:\Users\lenovo\Desktop\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.pdb
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\bin\Debug\HttpError.exe.config
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\bin\Debug\HttpError.exe
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\bin\Debug\HttpError.pdb
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\bin\Debug\StyleCop.dll
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\bin\Debug\StyleCop.xml
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csprojAssemblyReference.cache
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csproj.CoreCompileInputs.cache
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.csproj.CopyComplete
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.exe
+C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HttpError\HttpError\obj\Debug\HttpError.pdb
