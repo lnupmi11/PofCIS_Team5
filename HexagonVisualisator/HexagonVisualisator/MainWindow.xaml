@@ -1,0 +1,18 @@
+﻿<Window x:Class="HexagonVisualisator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HexagonVisualisator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1300">
+    <Grid>
+        <Button Name="NewPaintButton" Margin="23,28,1170.6,507.4" Click="New_Paint_Click">New Paint</Button>
+        <Button Name="OpenPaintButton" Margin="23,89,1170.6,446.4" Click="Open_Paint_Click">Open Paint</Button>
+        <Button Name="SavePaintButton" Margin="23,148,1170.6,387.4" Click="Save_Paint_Click">Save Paint</Button>
+        <Canvas Name="MainCanvas" Margin="180,28,35.6,48.4" Background="White" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown">
+            
+        </Canvas>
+
+    </Grid>
+</Window>
