@@ -148,5 +148,30 @@ namespace HexagonVisualisator
             var p = Mouse.GetPosition(this.MainCanvas);
             HexagonVisualisatorDAL.Models.Point point = new HexagonVisualisatorDAL.Models.Point(p.X, p.Y);
         }
+
+        private void AddNewHexagonButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChangeColorOfHexagonButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChangeCordinatesOfHexagonButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteExistingButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelActionButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

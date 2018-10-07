@@ -7,11 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1300">
     <Grid>
-        <Button Name="NewPaintButton" Margin="23,28,1170.6,507.4" Click="New_Paint_Click">New Paint</Button>
-        <Button Name="OpenPaintButton" Margin="23,89,1170.6,446.4" Click="Open_Paint_Click">Open Paint</Button>
-        <Button Name="SavePaintButton" Margin="23,148,1170.6,387.4" Click="Save_Paint_Click">Save Paint</Button>
-        <Canvas Name="MainCanvas" Margin="180,28,35.6,48.4" Background="White" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown">
-            
+        <Button Name="NewPaintButton" Margin="20,525,1156.6,10.4" Click="New_Paint_Click">New Paint</Button>
+        <Button Name="OpenPaintButton" Margin="137,525,1039.6,10.4" Click="Open_Paint_Click" RenderTransformOrigin="0.748,0.53">Open Paint</Button>
+        <Button Name="SavePaintButton" Margin="254,525,922.6,10.4" Click="Save_Paint_Click" RenderTransformOrigin="0.484,7.249">Save Paint</Button>
+        <Button Name="AddNewHexagonButton" Margin="20,28,1156.6,507.4" Click="AddNewHexagonButton_Click" RenderTransformOrigin="0.484,7.249">Add Hexagon</Button>
+        <Button Name="ChangeColorOfHexagonButton" Margin="20,63,1156.6,472.4" Click="ChangeColorOfHexagonButton_Click" RenderTransformOrigin="0.484,7.249">Change Color</Button>
+        <Button Name="ChangeCordinatesOfHexagonButton" Margin="20,98,1156.6,437.4" Click="ChangeCordinatesOfHexagonButton_Click" RenderTransformOrigin="0.484,7.249">Change Cordinates</Button>
+        <Button Name="DeleteExistingButton" Margin="20,133,1156.6,402.4" Click="DeleteExistingButton_Click" RenderTransformOrigin="0.484,7.249">Delete Hexagon</Button>
+        <Button Name="CancelActionButton" Margin="20,168,1156.6,367.4" Click="CancelActionButton_Click" RenderTransformOrigin="0.484,7.249">Cancel</Button>
+        <Canvas Name="MainCanvas" Margin="180,28,35.6,74.4" Background="White" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown">
         </Canvas>
 
     </Grid>
