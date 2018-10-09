@@ -16,6 +16,7 @@ using System.IO;
 using Microsoft.Win32;
 using HexagonVisualisatorDAL.Serializers;
 using HexagonVisualisatorDAL.Models;
+using System.Threading;
 
 namespace HexagonVisualisator
 {
@@ -55,9 +56,16 @@ namespace HexagonVisualisator
         private bool _isChangingCordinates;
 
         /// <summary>
+        /// Indicates if hexagon should move after mouse.
+        /// </summary>
+        private bool _isMovingMode;
+
+        /// <summary>
         /// Allows to pick color.
         /// </summary>
         private ColorDialog _colorDialog;
+
+        private Thread _movingMode;
 
         /// <summary>
         /// Method what initialize main window.
@@ -68,6 +76,7 @@ namespace HexagonVisualisator
             _hexagonSerializer = new HexagonSerializer();
             _isAddingNewHexagon = false;
             _isChangingCordinates = false;
+            _isMovingMode = false;
             InitializeComponent();
         }
 
@@ -194,6 +203,7 @@ namespace HexagonVisualisator
                     _newHexagon = null;
                     _isAddingNewHexagon = false;
                     PrintHexagons();
+                    FeedContextMenu();
                 }
             }
             else
@@ -201,6 +211,13 @@ namespace HexagonVisualisator
                 if(_isChangingCordinates == true)
                 {
                     MoveSelecteHexagon(p);
+                }
+                if(_isMovingMode == true)
+                {
+                    _isMovingMode = false;
+                    _movingMode.Join();
+                    EnableButtons();
+                    AddNewHexagonButton.IsEnabled = true;
                 }
                 else
                 {
@@ -255,6 +272,7 @@ namespace HexagonVisualisator
         {
             _hexagons.Remove(_selectedHexagon);
             PrintHexagons();
+            FeedContextMenu();
             _selectedHexagon = null;
             DisableButtons();
         }
@@ -264,6 +282,13 @@ namespace HexagonVisualisator
         /// </summary>
         private void CancelActionButton_Click(object sender, RoutedEventArgs e)
         {
+            if(_movingMode.IsAlive)
+            {
+                _isMovingMode = false;
+                _movingMode.Join();
+                EnableButtons();
+                AddNewHexagonButton.IsEnabled = true;
+            }
             DisableButtons();
             _isAddingNewHexagon = false;
             _isChangingCordinates = false;
@@ -316,13 +341,74 @@ namespace HexagonVisualisator
             var center = _selectedHexagon.GetCentroid();
             var dx = p.X - center.X;
             var dy = p.Y - center.Y;
-            foreach(var v in _selectedHexagon.Vertexes)
+            foreach (var v in _selectedHexagon.Vertexes)
             {
                 v.X += dx;
                 v.Y += dy;
             }
             _isChangingCordinates = false;
             PrintHexagons();
+        }
+
+        /// <summary>
+        /// Dynamically populates context menu with shapes on canvas.
+        /// </summary>
+        private void FeedContextMenu()
+        {
+            ShapesButton.ContextMenu.Items.Clear();
+            for(int i = 0; i < _hexagons.Count; ++i)
+            {
+                MenuItem newMenuItem = new MenuItem();
+                newMenuItem.Header = "Hexagon " + i;
+                newMenuItem.Click += ContextMenuItem_Click;
+                ShapesButton.ContextMenu.Items.Add(newMenuItem);
+            }
+        }
+
+        /// <summary>
+        /// Handles clicks from context menu.
+        /// </summary>
+        private void ContextMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem obMenuItem = e.OriginalSource as MenuItem;
+            if( obMenuItem != null )
+            {
+                int hexIndex = Int32.Parse(obMenuItem.Header.ToString().Split(' ')[1]);
+                _selectedHexagon = _hexagons[hexIndex];
+                EnableButtons();
+                _isMovingMode = true;
+                DisableButtons();
+                AddNewHexagonButton.IsEnabled = false;
+                CancelActionButton.IsEnabled = true;
+                _movingMode = new Thread(StartMovingMode);
+                _movingMode.SetApartmentState(ApartmentState.STA);
+                _movingMode.Start();
+            }
+        }
+
+        /// <summary>
+        /// Gets mouse position on window.
+        /// </summary>
+        private System.Windows.Point GetMousePositionWindowsForms()
+        {
+            System.Windows.Point pointToWindow = Mouse.GetPosition(this);
+            return pointToWindow;
+        }
+
+        /// <summary>
+        /// Goes into separete thread for hexagon movement.
+        /// </summary>
+        private void StartMovingMode()
+        {
+            while(_isMovingMode == true)
+            {
+                Application.Current.Dispatcher.Invoke((Action)(() =>
+                {
+                    MoveSelecteHexagon(GetMousePositionWindowsForms());
+                    PrintHexagons();
+                }));
+                Thread.Sleep(100);
+            }
         }
     }
 }

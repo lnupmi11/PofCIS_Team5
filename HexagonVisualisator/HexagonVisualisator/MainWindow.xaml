@@ -15,6 +15,13 @@
         <Button Name="ChangeCordinatesOfHexagonButton" Margin="20,98,1156.6,437.4" Click="ChangeCordinatesOfHexagonButton_Click" RenderTransformOrigin="0.484,7.249" IsEnabled="False">Change Cordinates</Button>
         <Button Name="DeleteExistingButton" Margin="20,133,1156.6,402.4" Click="DeleteExistingButton_Click" RenderTransformOrigin="0.484,7.249" IsEnabled="False">Delete Hexagon</Button>
         <Button Name="CancelActionButton" Margin="20,168,1156.6,367.4" Click="CancelActionButton_Click" RenderTransformOrigin="0.484,7.249" IsEnabled="False">Cancel</Button>
+        <Button Name="ShapesButton" Margin="20,248,1157,287" RenderTransformOrigin="0.484,7.249" IsEnabled="True">
+            Shapes
+            <Button.ContextMenu>
+                <ContextMenu>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
         <Canvas Name="MainCanvas" Margin="180,28,35.6,74.4" Background="White" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown">
         </Canvas>
 
