@@ -10,3 +10,9 @@ C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HexagonVisualisator\HexagonVisu
 C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HexagonVisualisator\HexagonVisualisatorDAL\obj\Debug\HexagonVisualisatorDAL.csproj.CoreCompileInputs.cache
 C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HexagonVisualisator\HexagonVisualisatorDAL\obj\Debug\HexagonVisualisatorDAL.dll
 C:\Users\yurav\OneDrive\Desktop\LNU\PofCIS_Team5\HexagonVisualisator\HexagonVisualisatorDAL\obj\Debug\HexagonVisualisatorDAL.pdb
+E:\university\PofCIS_Team5\HexagonVisualisator\HexagonVisualisatorDAL\bin\Debug\HexagonVisualisatorDAL.dll
+E:\university\PofCIS_Team5\HexagonVisualisator\HexagonVisualisatorDAL\bin\Debug\HexagonVisualisatorDAL.pdb
+E:\university\PofCIS_Team5\HexagonVisualisator\HexagonVisualisatorDAL\obj\Debug\HexagonVisualisatorDAL.csprojAssemblyReference.cache
+E:\university\PofCIS_Team5\HexagonVisualisator\HexagonVisualisatorDAL\obj\Debug\HexagonVisualisatorDAL.csproj.CoreCompileInputs.cache
+E:\university\PofCIS_Team5\HexagonVisualisator\HexagonVisualisatorDAL\obj\Debug\HexagonVisualisatorDAL.dll
+E:\university\PofCIS_Team5\HexagonVisualisator\HexagonVisualisatorDAL\obj\Debug\HexagonVisualisatorDAL.pdb

@@ -35,12 +35,39 @@ namespace HexagonVisualisator
         private List<Hexagon> _hexagons;
 
         /// <summary>
+        /// Saves points for new hexagon.
+        /// </summary>
+        private Hexagon _newHexagon;
+
+        /// <summary>
+        /// Saves selected hexagon.
+        /// </summary>
+        private Hexagon _selectedHexagon;
+
+        /// <summary>
+        /// Indicates if left mouse click is new point.
+        /// </summary>
+        private bool _isAddingNewHexagon;
+
+        /// <summary>
+        /// Indicates if hexagon coordinates will be changed.
+        /// </summary>
+        private bool _isChangingCordinates;
+
+        /// <summary>
+        /// Allows to pick color.
+        /// </summary>
+        private ColorDialog _colorDialog;
+
+        /// <summary>
         /// Method what initialize main window.
         /// </summary>
         public MainWindow()
         {
             _hexagons = new List<Hexagon>();
             _hexagonSerializer = new HexagonSerializer();
+            _isAddingNewHexagon = false;
+            _isChangingCordinates = false;
             InitializeComponent();
         }
 
@@ -52,6 +79,7 @@ namespace HexagonVisualisator
         private void New_Paint_Click(object sender, RoutedEventArgs e)
         {
             ClearCanvasPanel();
+            AddNewHexagonButton.IsEnabled = true;
         }
 
         /// <summary>
@@ -77,6 +105,7 @@ namespace HexagonVisualisator
             {
                 PrintHexagons();
             }
+            AddNewHexagonButton.IsEnabled = true;
         }
 
         /// <summary>
@@ -128,50 +157,172 @@ namespace HexagonVisualisator
             this.MainCanvas.Children.Clear();
             for (int i = 0; i < _hexagons.Count; i++)
             {
-                for (int j = 0; j < _hexagons[i].Vertexes.Count - 1; j++)
+                Polygon p = new Polygon();
+                p.Points = new PointCollection();
+                for (int j = 0; j < _hexagons[i].Vertexes.Count; j++)
                 {
-                    Line line = new Line();
-                    line.Stroke = Brushes.Red;
-                    line.X1 = _hexagons[i].Vertexes[j].X;
-                    line.X2 = _hexagons[i].Vertexes[j + 1].X;
-                    line.Y1 = _hexagons[i].Vertexes[j].Y;
-                    line.Y2 = _hexagons[i].Vertexes[j + 1].Y;
-                    line.StrokeThickness = 2;
-                    this.MainCanvas.Children.Add(line);
+                    p.Points.Add(new System.Windows.Point(_hexagons[i].Vertexes[j % 6].X, _hexagons[i].Vertexes[j % 6].Y));
                 }
+                p.Fill = _hexagons[i].Brush;
+                this.MainCanvas.Children.Add(p);
             }
         }
 
-        // TODO: proccess click on canvas. 
+        /// <summary>
+        /// Processes clicks on canvas.
+        /// </summary>
         private void MainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var p = Mouse.GetPosition(this.MainCanvas);
             HexagonVisualisatorDAL.Models.Point point = new HexagonVisualisatorDAL.Models.Point(p.X, p.Y);
+            if( _isAddingNewHexagon == true )
+            {
+                if( _newHexagon == null )
+                {
+                    _newHexagon = new Hexagon();
+                }
+                _newHexagon.Vertexes.Add(point);
+                if(_newHexagon.Vertexes.Count == 6)
+                {
+                    _hexagons.Add(_newHexagon);
+
+                    _colorDialog = new ColorDialog();
+                    _colorDialog.Owner = this;
+                    _colorDialog.ShowDialog();
+                    _newHexagon.Brush = new SolidColorBrush(_colorDialog.SelectedColor);
+
+                    _newHexagon = null;
+                    _isAddingNewHexagon = false;
+                    PrintHexagons();
+                }
+            }
+            else
+            {
+                if(_isChangingCordinates == true)
+                {
+                    MoveSelecteHexagon(p);
+                }
+                else
+                {
+                    var hex = FindPolygonByPoint(p);
+                    if (hex != null)
+                    {
+                        _selectedHexagon = hex;
+                        EnableButtons();
+                    }
+                }
+            }
         }
 
+        /// <summary>
+        /// Processes creation of new hexagon.
+        /// </summary>
         private void AddNewHexagonButton_Click(object sender, RoutedEventArgs e)
         {
-
+            DisableButtons();
+            CancelActionButton.IsEnabled = true;
+            _isAddingNewHexagon = true; 
+            _selectedHexagon = null;
         }
 
+        /// <summary>
+        /// Processes color change of hexagon.
+        /// </summary>
         private void ChangeColorOfHexagonButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _colorDialog = new ColorDialog();
+            _colorDialog.Owner = this;
+            if(_colorDialog.ShowDialog() == true)
+            {
+                _selectedHexagon.Brush = new SolidColorBrush(_colorDialog.SelectedColor);
+            }
+            PrintHexagons();
         }
 
+        /// <summary>
+        /// Processes changing of coordinates for hexagon.
+        /// </summary>
         private void ChangeCordinatesOfHexagonButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _isChangingCordinates = true;
+            CancelActionButton.IsEnabled = true;
         }
 
+        /// <summary>
+        /// Processes hexagon deletion.
+        /// </summary>
         private void DeleteExistingButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _hexagons.Remove(_selectedHexagon);
+            PrintHexagons();
+            _selectedHexagon = null;
+            DisableButtons();
         }
 
+        /// <summary>
+        /// Diselects hexagon.
+        /// </summary>
         private void CancelActionButton_Click(object sender, RoutedEventArgs e)
         {
+            DisableButtons();
+            _isAddingNewHexagon = false;
+            _isChangingCordinates = false;
+            _selectedHexagon = null;
+            _newHexagon = null;
+        }
 
+        /// <summary>
+        /// Disables buttons for hexagon changes.
+        /// </summary>
+        private void DisableButtons()
+        {
+            ChangeColorOfHexagonButton.IsEnabled = false;
+            ChangeCordinatesOfHexagonButton.IsEnabled = false;
+            DeleteExistingButton.IsEnabled = false;
+            CancelActionButton.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// Enables buttons for hexagon changes.
+        /// </summary>
+        private void EnableButtons()
+        {
+            AddNewHexagonButton.IsEnabled = true;
+            ChangeColorOfHexagonButton.IsEnabled = true;
+            ChangeCordinatesOfHexagonButton.IsEnabled = true;
+            DeleteExistingButton.IsEnabled = true;
+        }
+
+        /// <summary>
+        /// Finds selected polygon.
+        /// </summary>
+        private Hexagon FindPolygonByPoint(System.Windows.Point p)
+        {
+            foreach(var hex in _hexagons)
+            {
+                if(hex.IsInPolygon(new HexagonVisualisatorDAL.Models.Point(p.X, p.Y)) == true)
+                {
+                    return hex;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Finds moves polygon center to new point.
+        /// </summary>
+        private void MoveSelecteHexagon(System.Windows.Point p)
+        {
+            var center = _selectedHexagon.GetCentroid();
+            var dx = p.X - center.X;
+            var dy = p.Y - center.Y;
+            foreach(var v in _selectedHexagon.Vertexes)
+            {
+                v.X += dx;
+                v.Y += dy;
+            }
+            _isChangingCordinates = false;
+            PrintHexagons();
         }
     }
 }
