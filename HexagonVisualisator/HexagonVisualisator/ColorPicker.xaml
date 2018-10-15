@@ -41,11 +41,11 @@
             <Label Content="Pick swatch type" Foreground="White" FontWeight="Bold"
                    VerticalAlignment="Center"/>
             <Image x:Name="ImgSqaure2" Height="20" Width="20"
-                   Source="Images/ColorSwatchSquare2.png" Margin="5,0,0,0"
+                   Source="pack://siteoforigin:,,,/Images/ColorSwatchSquare2.png" Margin="5,0,0,0"
                    ToolTip="Color Swatch Square 2"
                    MouseLeftButtonDown="Swatch_MouseLeftButtonDown"/>
             <Image x:Name="ImgCircle1" Height="20" Width="20"
-                   Source="Images/ColorSwatchCircle.png" Margin="5,0,0,0"
+                   Source="pack://siteoforigin:,,,/Images/ColorSwatchCircle.png" Margin="5,0,0,0"
                    ToolTip="Color Swatch Circle"
                    MouseLeftButtonDown="Swatch_MouseLeftButtonDown"/>
         </StackPanel>
@@ -76,7 +76,7 @@
                  HorizontalAlignment="Center"
                  VerticalAlignment="Top"
                  Margin="2"
-                 Source="E:/university/PofCIS_Team5/HexagonVisualisator/Images/ColorSwatchSquare1.png"/>
+                 Source="pack://siteoforigin:,,,/Images/ColorSwatchSquare1.png"/>
                 <Canvas x:Name="canvasImage"
                 Width="150"
                 Height="150"
