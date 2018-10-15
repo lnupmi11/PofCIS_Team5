@@ -33,5 +33,23 @@ namespace UnitTestProject1
             Hexagon.Color = Colors.Red;
             Assert.AreEqual(Hexagon.Color, Colors.Red);
         }
+
+        [TestMethod]
+        public void Test_GetCentroidProperty()
+        {
+            Hexagon Hexagon = new Hexagon();
+            Hexagon.Vertexes = new List<Point>()
+            {
+                new Point(67, 89),
+                new Point(67, 45),
+                new Point(56, 23),
+                new Point(10, 9),
+                new Point(100, 145),
+                new Point(23, 76)
+            };
+            Point p = new Point(32.982828819260043, -12.746326783501505);
+            Assert.AreEqual(Hexagon.GetCentroid().X, p.X);
+            Assert.AreEqual(Hexagon.GetCentroid().Y, p.Y);
+        }
     }
 }
