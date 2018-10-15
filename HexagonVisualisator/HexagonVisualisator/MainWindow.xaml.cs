@@ -89,6 +89,7 @@ namespace HexagonVisualisator
         {
             ClearCanvasPanel();
             AddNewHexagonButton.IsEnabled = true;
+            SavePaintButton.IsEnabled = true;
         }
 
         /// <summary>
@@ -135,6 +136,7 @@ namespace HexagonVisualisator
             if (saveFileDialog.ShowDialog() == true)
             {
                 _hexagonSerializer.Serialize(_hexagons, saveFileDialog.FileName);
+                ClearCanvasPanel();
             }
         }
 
@@ -172,7 +174,7 @@ namespace HexagonVisualisator
                 {
                     p.Points.Add(new System.Windows.Point(_hexagons[i].Vertexes[j % 6].X, _hexagons[i].Vertexes[j % 6].Y));
                 }
-                p.Fill = _hexagons[i].Brush;
+                p.Fill = new SolidColorBrush(_hexagons[i].Color);
                 this.MainCanvas.Children.Add(p);
             }
         }
@@ -198,7 +200,7 @@ namespace HexagonVisualisator
                     _colorDialog = new ColorDialog();
                     _colorDialog.Owner = this;
                     _colorDialog.ShowDialog();
-                    _newHexagon.Brush = new SolidColorBrush(_colorDialog.SelectedColor);
+                    _newHexagon.Color = _colorDialog.SelectedColor;
 
                     _newHexagon = null;
                     _isAddingNewHexagon = false;
@@ -251,7 +253,7 @@ namespace HexagonVisualisator
             _colorDialog.Owner = this;
             if(_colorDialog.ShowDialog() == true)
             {
-                _selectedHexagon.Brush = new SolidColorBrush(_colorDialog.SelectedColor);
+                _selectedHexagon.Color = _colorDialog.SelectedColor;
             }
             PrintHexagons();
         }

@@ -32,7 +32,7 @@ namespace HexagonVisualisatorDAL.Models
         /// <summary>
         /// Saves hexagon color.
         /// </summary>
-        public SolidColorBrush Brush { get; set; }
+        public Color Color { get; set; }
 
         /// <summary>
         /// Default constructor.
@@ -40,7 +40,7 @@ namespace HexagonVisualisatorDAL.Models
         public Hexagon()
         {
             Vertexes = new List<Point>();
-            Brush = new SolidColorBrush(Color.FromArgb(255, 20, 20, 90));
+            Color = Color.FromArgb(255, 20, 20, 90);
         }
 
         /// <summary>
