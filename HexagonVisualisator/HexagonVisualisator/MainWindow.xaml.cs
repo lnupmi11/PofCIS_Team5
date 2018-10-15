@@ -199,13 +199,17 @@ namespace HexagonVisualisator
 
                     _colorDialog = new ColorDialog();
                     _colorDialog.Owner = this;
-                    _colorDialog.ShowDialog();
-                    _newHexagon.Color = _colorDialog.SelectedColor;
-
-                    _newHexagon = null;
-                    _isAddingNewHexagon = false;
+                    if(_colorDialog.ShowDialog() == true)
+                    {
+                        _newHexagon.Color = _colorDialog.SelectedColor;
+                    }
+                    else
+                    {
+                        _hexagons.RemoveAt(_hexagons.Count - 1);
+                    }
                     PrintHexagons();
                     FeedContextMenu();
+                    CancelAllActions();
                 }
             }
             else
@@ -255,6 +259,10 @@ namespace HexagonVisualisator
             {
                 _selectedHexagon.Color = _colorDialog.SelectedColor;
             }
+            else
+            {
+                CancelAllActions();     
+            }
             PrintHexagons();
         }
 
@@ -284,7 +292,15 @@ namespace HexagonVisualisator
         /// </summary>
         private void CancelActionButton_Click(object sender, RoutedEventArgs e)
         {
-            if(_movingMode.IsAlive)
+            CancelAllActions();
+        }
+
+        /// <summary>
+        /// Clears all progress.
+        /// </summary>
+        private void CancelAllActions()
+        {
+            if (_movingMode != null && _movingMode.IsAlive)
             {
                 _isMovingMode = false;
                 _movingMode.Join();
