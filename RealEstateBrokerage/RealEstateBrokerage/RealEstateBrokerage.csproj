@@ -65,7 +65,7 @@
     <Compile Include="DAL\DataTypes\City.cs" />
     <Compile Include="DAL\DataTypes\District.cs" />
     <Compile Include="DAL\DataTypes\RealEstate.cs" />
-    <Compile Include="DAL\IOTypes\CitesDB.cs" />
+    <Compile Include="DAL\IOTypes\CitiesDB.cs" />
     <Compile Include="DAL\IOTypes\DistrictsDB.cs" />
     <Compile Include="DAL\IOTypes\RealEstateDB.cs" />
     <Compile Include="MainWindow.xaml.cs">

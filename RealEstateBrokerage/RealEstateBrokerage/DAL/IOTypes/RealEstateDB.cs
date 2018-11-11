@@ -31,6 +31,7 @@ namespace RealEstateBrokerage.DAL.IOTypes
         {
             allRealEstate = new List<RealEstate>();
             fileName = _fileName;
+            ReadFromFile();
         }
 
         public void ReadFromFile()

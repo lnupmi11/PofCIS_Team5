@@ -1,0 +1,6 @@
+1 1 Soho
+2 1 GreenVillage
+3 2 Marais
+4 2 Latin Quarter
+5 3 Collatino
+6 3 Parioli

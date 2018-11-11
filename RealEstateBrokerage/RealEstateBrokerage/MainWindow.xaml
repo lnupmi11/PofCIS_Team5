@@ -12,26 +12,38 @@
             <RowDefinition Height="262*"/>
             <RowDefinition Height="307*"/>
         </Grid.RowDefinitions>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="67,44,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="MinTB" HorizontalAlignment="Left" Height="22" Margin="67,44,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Min" HorizontalAlignment="Left" Margin="25,41,0,0" VerticalAlignment="Top"/>
         <Label Content="Max" HorizontalAlignment="Left" Margin="26,77,0,0" VerticalAlignment="Top"/>
         <Label Content="Budget" HorizontalAlignment="Left" Margin="12,11,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="67,79,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="MaxTB" HorizontalAlignment="Left" Height="23" Margin="67,79,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Location" HorizontalAlignment="Left" Margin="215,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,0" Width="74"/>
         <Label Content="City" HorizontalAlignment="Left" Margin="232,41,0,0" VerticalAlignment="Top" Width="74"/>
         <Label Content="District" HorizontalAlignment="Left" Margin="231,77,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="312,44,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="311,79,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name ="CitiesCB" HorizontalAlignment="Left" Margin="312,44,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CitiesCB_SelectionChanged"/>
+        <ComboBox Name ="DistrictsCB" HorizontalAlignment="Left" Margin="311,79,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="DistrictsCB_SelectionChanged"/>
         <Label Content="Details" HorizontalAlignment="Left" Margin="458,13,0,0" VerticalAlignment="Top" Width="66"/>
         <Label Content="# rooms" HorizontalAlignment="Left" Margin="470,41,0,0" VerticalAlignment="Top"/>
         <Label Content="#bathrooms" HorizontalAlignment="Left" Margin="470,75,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.211,0.615"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="558,44,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.873,0.783"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="558,77,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.635,2.826"/>
-        <CheckBox Content="views" HorizontalAlignment="Left" Margin="670,45,0,0" VerticalAlignment="Top" Width="70"/>
-        <CheckBox Content="terrace" HorizontalAlignment="Left" Margin="670,68,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="penthouse" HorizontalAlignment="Left" Margin="761,46,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.563,0.667"/>
-        <DataGrid HorizontalAlignment="Left" Height="331" Margin="36,176,0,0" VerticalAlignment="Top" Width="817" Grid.RowSpan="2"/>
-        <Button Content="Find" HorizontalAlignment="Left" Margin="754,110,0,0" VerticalAlignment="Top" Width="97" Height="26"/>
+        <TextBox Name ="RoomsTB" HorizontalAlignment="Left" Height="23" Margin="558,44,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.873,0.783"/>
+        <TextBox Name ="BathsTB" HorizontalAlignment="Left" Height="23" Margin="558,77,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.635,2.826"/>
+        <CheckBox Name ="ViewsCB" Content="views" HorizontalAlignment="Left" Margin="670,45,0,0" VerticalAlignment="Top" Width="70"/>
+        <CheckBox Name ="TerraceCB" Content="terrace" HorizontalAlignment="Left" Margin="670,68,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name ="PenthouseCB" Content="penthouse" HorizontalAlignment="Left" Margin="761,46,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.563,0.667"/>
+        <Button Name ="FindBtn" Content="Find" HorizontalAlignment="Left" Margin="754,110,0,0" VerticalAlignment="Top" Width="97" Height="26" Click="FindBtn_Click"/>
+        <DataGrid DataContext="{Binding}" x:Name="Table" Grid.RowSpan="2" Margin="39,164,41,21" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Id" Header="ID" Binding="{Binding Id}" Width="90"/>
+                <DataGridTextColumn x:Name="City" Header="City" Binding="{Binding City}" Width="90"/>
+                <DataGridTextColumn x:Name="District" Header="District" Binding="{Binding District}" Width="90"/>
+                <DataGridTextColumn x:Name="Rooms" Header="# Rooms" Binding="{Binding NumOfRooms}" Width="90"/>
+                <DataGridTextColumn Header="# Baths" Binding="{Binding NumOfBaths}" Width="90"/>
+                <DataGridTextColumn Header="Terrace" Binding="{Binding IsWithTerrace}" Width="90"/>
+                <DataGridTextColumn Header="Views" Binding="{Binding IsWithViews}" Width="90"/>
+                <DataGridTextColumn Header="PentHouse" Binding="{Binding IsPenthouse}" Width="90"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="90"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

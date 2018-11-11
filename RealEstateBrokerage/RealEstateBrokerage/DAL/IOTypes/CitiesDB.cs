@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RealEstateBrokerage.DAL.IOTypes
 {
-    public class CitesDB
+    public class CitiesDB
     {
         private readonly string fileName;
         private List<City> allCities;
@@ -27,10 +27,11 @@ namespace RealEstateBrokerage.DAL.IOTypes
                 allCities = value;
             }
         }
-        public CitesDB(string _fileName)
+        public CitiesDB(string _fileName)
         {
             allCities = new List<City>();
             fileName = _fileName;
+            ReadFromFile();
         }
 
         public void ReadFromFile()
