@@ -54,15 +54,5 @@ namespace RealEstateBrokerage.DAL.IOTypes
                 }
             }
         }
-
-        public City GetCityById(int cityId)
-        {
-            return allCities.Where(x => x.Id == cityId).FirstOrDefault();
-        }
-
-        public City GetCityByName(string name)
-        {
-            return allCities.Where(x => x.Name == name).FirstOrDefault();
-        }
     }
 }

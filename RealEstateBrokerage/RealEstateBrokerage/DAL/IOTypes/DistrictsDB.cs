@@ -54,20 +54,5 @@ namespace RealEstateBrokerage.DAL.IOTypes
                 }
             }
         }
-
-        public District GetDistrictById(int cityId)
-        {
-            return allDistricts.Where(x => x.Id == cityId).FirstOrDefault();
-        }
-
-        public District GetDistrictByName(string name)
-        {
-            return allDistricts.Where(x => x.Name == name).FirstOrDefault();
-        }
-
-        public List<District> GetDistrictsByCityId(int id)
-        {
-            return allDistricts.Where(x => x.CityId == id).ToList();
-        }
     }
 }

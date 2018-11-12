@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RealEstateBrokerage.DAL.DataTypes;
 using RealEstateBrokerage.DAL.IOTypes;
+using RealEstateBrokerage.BLL;
 
 namespace RealEstateBrokerage
 {
@@ -22,10 +23,8 @@ namespace RealEstateBrokerage
     /// </summary>
     public partial class MainWindow : Window
     {
-        private CitiesDB _cities;
-        private DistrictsDB _districts;
-        private RealEstateDB _realEstate;
 
+        private RealEstateBrokerageManager _manager;
 
         private int _currCity = -1;
         private int _currDistrict = -1;
@@ -40,23 +39,21 @@ namespace RealEstateBrokerage
 
         public MainWindow()
         {
+            _manager = new RealEstateBrokerageManager();
             InitializeComponent();
-            _cities = new CitiesDB("../../DAL/InputData/CitiesData.txt");
-            _districts = new DistrictsDB("../../DAL/InputData/DistrictsData.txt");
-            _realEstate = new RealEstateDB("../../DAL/InputData/RealEstateData.txt");
-            CitiesCB.ItemsSource = _cities.AllCities.Select(x => x.Name);
-            FillTable(_realEstate.AllRealEstate);
+            CitiesCB.ItemsSource = _manager.Cities.AllCities.Select(x => x.Name);
+            FillTable(_manager.RealEstate.AllRealEstate);
         }
 
         private void CitiesCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _currCity = _cities.GetCityByName(CitiesCB.SelectedValue.ToString()).Id;
-            DistrictsCB.ItemsSource = _districts.GetDistrictsByCityId(_currCity).Select(x => x.Name);
+            _currCity = _manager.GetCityByName(CitiesCB.SelectedValue.ToString()).Id;
+            DistrictsCB.ItemsSource = _manager.GetDistrictsByCityId(_currCity).Select(x => x.Name);
         }
 
         private void DistrictsCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _currDistrict = _districts.GetDistrictByName(DistrictsCB.SelectedValue.ToString()).Id;
+            _currDistrict = _manager.GetDistrictByName(DistrictsCB.SelectedValue.ToString()).Id;
         }
 
         private void ReadInput()
@@ -72,9 +69,7 @@ namespace RealEstateBrokerage
         private void FindBtn_Click(object sender, RoutedEventArgs e)
         {
             ReadInput();
-            _serchResult = _realEstate.AllRealEstate.Where(x => x.Price >= _minPrice && x.Price <= _maxPrice
-            && x.CityId == _currCity && x.DistrictId == _currDistrict && x.IsWithViews == _views
-            && x.IsWithTerrace == _terrace && x.IsPenthouse == _penthouse).ToList();
+            _serchResult = _manager.SearchRealEstates(_minPrice, _maxPrice, _currCity, _currDistrict, _views, _terrace, _penthouse);
             FillTable(_serchResult);
         }
 
@@ -83,7 +78,7 @@ namespace RealEstateBrokerage
             Table.Items.Clear();
             foreach (var re in realEstate)
             {
-                RealEstateViewModel row = new RealEstateViewModel(re.Id, _cities.GetCityById(re.CityId).Name, _districts.GetDistrictById(re.DistrictId).Name,
+                RealEstateViewModel row = new RealEstateViewModel(re.Id, _manager.GetCityById(re.CityId).Name, _manager.GetDistrictById(re.DistrictId).Name,
 re.NumOfRooms, re.NumOfBaths, re.IsWithTerrace, re.IsWithViews, re.IsPenthouse, re.Price);
                 Table.Items.Add(row);
             }

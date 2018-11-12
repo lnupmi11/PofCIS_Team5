@@ -56,20 +56,5 @@ namespace RealEstateBrokerage.DAL.IOTypes
                 }
             }
         }
-
-        public RealEstate GetRealEstateById(int cityId)
-        {
-            return allRealEstate.Where(x => x.Id == cityId).FirstOrDefault();
-        }
-
-        public List<RealEstate> GetRealEstateByCityId(int id)
-        {
-            return allRealEstate.Where(x => x.CityId == id).ToList();
-        }
-
-        public List<RealEstate> GetRealEstateByDistrictId(int id)
-        {
-            return allRealEstate.Where(x => x.DistrictId == id).ToList();
-        }
     }
 }
