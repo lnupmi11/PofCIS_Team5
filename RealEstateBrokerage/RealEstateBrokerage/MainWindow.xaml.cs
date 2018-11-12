@@ -79,9 +79,23 @@ namespace RealEstateBrokerage
             foreach (var re in realEstate)
             {
                 RealEstateViewModel row = new RealEstateViewModel(re.Id, _manager.GetCityById(re.CityId).Name, _manager.GetDistrictById(re.DistrictId).Name,
-re.NumOfRooms, re.NumOfBaths, re.IsWithTerrace, re.IsWithViews, re.IsPenthouse, re.Price);
+                  re.NumOfRooms, re.NumOfBaths, re.IsWithTerrace, re.IsWithViews, re.IsPenthouse, re.Price);
                 Table.Items.Add(row);
             }
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewRealEstate tmp = new AddNewRealEstate(_manager);
+            tmp.ShowDialog();
+            FillTable(_manager.RealEstate.AllRealEstate);
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            RealEstateViewModel realEstateView = (RealEstateViewModel)Table.SelectedItem;
+            _manager.DeleteById(realEstateView.Id);
+            FillTable(_manager.RealEstate.AllRealEstate);
         }
     }
 

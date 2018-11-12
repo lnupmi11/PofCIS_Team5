@@ -43,6 +43,8 @@
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="90"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name ="AddAccommodation" Content="Add accommodation" HorizontalAlignment="Left" Margin="67,118,0,0" VerticalAlignment="Top" Width="120" Height="26" Click="Add_Click"/>
+        <Button x:Name ="DeleteAccomodation" Content="Delete Accomodation" HorizontalAlignment="Left" Margin="312,118,0,0" VerticalAlignment="Top" Width="120" Height="26" Click="Delete_Click"/>
 
     </Grid>
 </Window>

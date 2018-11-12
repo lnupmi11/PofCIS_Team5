@@ -8,7 +8,7 @@ using RealEstateBrokerage.DAL.IOTypes;
 
 namespace RealEstateBrokerage.BLL
 {
-    class RealEstateBrokerageManager
+    public class RealEstateBrokerageManager
     {
         public CitiesDB Cities { get; }
         public DistrictsDB Districts { get; }
@@ -53,6 +53,29 @@ namespace RealEstateBrokerage.BLL
             return RealEstate.AllRealEstate.Where(x => x.Id == cityId).FirstOrDefault();
         }
 
+        internal void AddNewAccommodation(double price, int rooms, int baths, bool views, bool terrace, bool penthouse, string currCity, string currDistrict)
+        {
+            City city = GetCityByName(currCity);
+            if (city == null)
+            {
+                int id = Cities.AllCities.Max(c => c.Id);
+                city = new City(id + 1, currCity);
+                Cities.AllCities.Add(city);
+                Cities.WriteToFile();
+            }
+            District distric = GetDistrictByName(currDistrict);
+            if(distric == null)
+            {
+                int id = Districts.AllDistricts.Max(dis => dis.Id);
+                distric = new District(id + 1, city.Id, currDistrict );
+                Districts.AllDistricts.Add(distric);
+                Districts.WriteToFile();
+            }
+            int accId = RealEstate.AllRealEstate.Max(item => item.Id);
+            RealEstate.AllRealEstate.Add(new DAL.DataTypes.RealEstate(accId + 1, city.Id, distric.Id, rooms, baths, terrace, views, penthouse, price));
+            RealEstate.WriteToFile();
+        }
+
         public List<RealEstate> GetRealEstateByCityId(int id)
         {
             return RealEstate.AllRealEstate.Where(x => x.CityId == id).ToList();
@@ -70,6 +93,13 @@ namespace RealEstateBrokerage.BLL
             && x.IsWithTerrace == terrace && x.IsPenthouse == penthouse).ToList();
 
             return _serchResult;
+        }
+
+        internal void DeleteById(int id)
+        {
+            RealEstate realEstate = RealEstate.AllRealEstate.Where(item => item.Id == id).FirstOrDefault();
+            RealEstate.AllRealEstate.Remove(realEstate);
+            RealEstate.WriteToFile();
         }
     }
 }
