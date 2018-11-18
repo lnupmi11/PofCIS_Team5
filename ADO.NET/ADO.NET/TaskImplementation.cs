@@ -10,15 +10,22 @@ using System.Data.OleDb;
 
 namespace ADO.NET
 {
+    /// <summary>
+    /// Class that implements quries to db.
+    /// </summary>
     class TaskImplementation
     {
         string connectionString;
         SqlConnection connection;
 
+        /// <summary>
+        /// Constructor initializes connection string
+        /// </summary>
         public TaskImplementation()
         {
             connectionString = ConfigurationManager.ConnectionStrings["MainConnection"].ToString();
         }
+
         /// <summary>
         /// Function to open connection to database.
         /// </summary>
@@ -43,7 +50,9 @@ namespace ADO.NET
             }
         }
 
-
+        /// <summary>
+        /// Function to close connection to database.
+        /// </summary>
         public void CloseConnection()
         {
             try
@@ -68,6 +77,11 @@ namespace ADO.NET
             }
         }
 
+
+        /// <summary>
+        /// Function to query full information about employee
+        /// </summary>
+        /// <param name="id">employee's id</param>
         public void ShowInformationAboutEmployeeWithId(int id)
         {
             string queryText = $"SELECT * FROM [Employees] " +
@@ -120,6 +134,11 @@ namespace ADO.NET
         }
 
 
+        /// <summary>
+        /// Function to query employee whith same
+        /// first character in first and last names
+        /// </summary>
+        /// <param name="startChar">firt character</param>
         public void ShowListOfEmployeeFirstAndLastNamesWhichStartsOn(char startChar)
         {
             string queryText = $"SELECT FirstName, LastName FROM [Employees] " +
@@ -149,6 +168,10 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------\n\n");
         }
 
+        /// <summary>
+        /// Function to query all employees from same city
+        /// </summary>
+        /// <param name="city">city name</param>
         public void ShowListOfEmployeeFirstAndLastNamesFromCity(string city)
         {
             string queryText = $"SELECT FirstName, LastName FROM [Employees] " +
@@ -178,7 +201,11 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------\n\n");
         }
 
-
+        /// <summary>
+        /// Function to query employees first and last name
+        /// with age more then param
+        /// </summary>
+        /// <param name="age">minimum age</param>
         public void ShowListOfEmployeeFirstAndLastNamesWithAgeMoreThan(int age)
         {
             string queryText = $"SELECT FirstName, LastName, {DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate) FROM [Employees] " +
@@ -209,6 +236,11 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------\n\n");
         }
 
+        /// <summary>
+        /// Function to query count of employess
+        /// from same city
+        /// </summary>
+        /// <param name="city">city name</param>
         public void ShowCountEmployeesOfCity(string city)
         {
             string queryText = $"SELECT COUNT(EmployeeID) FROM Employees" +
@@ -238,6 +270,11 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------\n\n");
         }
 
+        /// <summary>
+        /// Function to query max, min, average age of 
+        /// employees from same city
+        /// </summary>
+        /// <param name="name">city name</param>
         public void ShowMaxMinAndAvgAgeOfEmployeeOfCity(string city)
         {
             string queryText = $"WITH Temp AS (SELECT * FROM Employees WHERE City = '{city}')"+
@@ -284,6 +321,10 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------\n\n");
         }
 
+        /// <summary>
+        /// Function to query min, max, average age of
+        /// employees of every city 
+        /// </summary>
         public void ShowMinMaxAvgForEveryCity()
         {
             string queryText = $"SELECT City, MIN({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate))," +
@@ -315,16 +356,21 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------\n\n");
         }
 
-        public void ShowСitiesWithAvgGT60()
+        /// <summary>
+        /// Function to query cities with 
+        /// average age greater then param
+        /// </summary>
+        /// <param name="age">minimum age</param>
+        public void ShowСitiesWithAvgAgeGT(int age)
         {
             string queryText = $"SELECT City, AVG({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate)) FROM Employees" +
                   $" GROUP BY City" +
-                  $" HAVING AVG({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate)) >= 60";
+                  $" HAVING AVG({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate)) >= {age}";
 
             SqlCommand sqlCommand = new SqlCommand(queryText, connection);
 
             Console.WriteLine("-------------------------------------------");
-            Console.WriteLine("Eighth Task. city, avg age >= 60");
+            Console.WriteLine($"Eighth Task. city, avg age >= {age}");
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
 
@@ -345,7 +391,11 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------\n\n");
         }
 
-        public void ShowEldestEmployee()
+        /// <summary>
+        /// Function to query oldest employee
+        /// first name and last name
+        /// </summary>
+        public void ShowOldestEmployee()
         {
             string queryText = $"SELECT TOP 1 FirstName, LastName" +
                 " FROM Employees ORDER BY BirthDate";
@@ -374,15 +424,20 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------\n\n");
         }
 
-        public void ShowThreeEldestEmployees()
+        /// <summary>
+        /// Function to query num of oldest employee
+        /// first name and last name
+        /// </summary>
+        /// <param name="num">Number of oldest people</param>
+        public void ShowOldestEmployees(int num)
         {
-            string queryText = $"SELECT TOP 3 FirstName, LastName, {DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate) " +
+            string queryText = $"SELECT TOP {num} FirstName, LastName, {DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate) " +
                 " FROM Employees ORDER BY BirthDate";
 
             SqlCommand sqlCommand = new SqlCommand(queryText, connection);
 
             Console.WriteLine("-------------------------------------------");
-            Console.WriteLine("Tenth Task. FirstName, LastName, Age of 3 eldest employees");
+            Console.WriteLine($"Tenth Task. FirstName, LastName, Age of {num} eldest employees");
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
 
@@ -402,8 +457,6 @@ namespace ADO.NET
             Console.WriteLine("End of Tenth task");
             Console.WriteLine("-------------------------------------------\n\n");
         }
-
-
     }
 }
 

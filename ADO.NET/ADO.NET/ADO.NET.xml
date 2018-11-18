@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ADO.NET</name>
+    </assembly>
+    <members>
+        <member name="T:ADO.NET.TaskImplementation">
+            <summary>
+            Class that implements quries to db.
+            </summary>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.#ctor">
+            <summary>
+            Constructor initializes connection string
+            </summary>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.OpenConnection">
+            <summary>
+            Function to open connection to database.
+            </summary>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.CloseConnection">
+            <summary>
+            Function to close connection to database.
+            </summary>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowInformationAboutEmployeeWithId(System.Int32)">
+            <summary>
+            Function to query full information about employee
+            </summary>
+            <param name="id">employee's id</param>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowListOfEmployeeFirstAndLastNamesWhichStartsOn(System.Char)">
+            <summary>
+            Function to query employee whith same
+            first character in first and last names
+            </summary>
+            <param name="startChar">firt character</param>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowListOfEmployeeFirstAndLastNamesFromCity(System.String)">
+            <summary>
+            Function to query all employees from same city
+            </summary>
+            <param name="city">city name</param>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowListOfEmployeeFirstAndLastNamesWithAgeMoreThan(System.Int32)">
+            <summary>
+            Function to query employees first and last name
+            with age more then param
+            </summary>
+            <param name="age">minimum age</param>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowCountEmployeesOfCity(System.String)">
+            <summary>
+            Function to query count of employess
+            from same city
+            </summary>
+            <param name="city">city name</param>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowMaxMinAndAvgAgeOfEmployeeOfCity(System.String)">
+            <summary>
+            Function to query max, min, average age of 
+            employees from same city
+            </summary>
+            <param name="name">city name</param>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowMinMaxAvgForEveryCity">
+            <summary>
+            Function to query min, max, average age of
+            employees of every city 
+            </summary>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowСitiesWithAvgAgeGT(System.Int32)">
+            <summary>
+            Function to query cities with 
+            average age greater then param
+            </summary>
+            <param name="age">minimum age</param>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowOldestEmployee">
+            <summary>
+            Function to query oldest employee
+            first name and last name
+            </summary>
+        </member>
+        <member name="M:ADO.NET.TaskImplementation.ShowOldestEmployees(System.Int32)">
+            <summary>
+            Function to query num of oldest employee
+            first name and last name
+            </summary>
+            <param name="num">Number of oldest people</param>
+        </member>
+    </members>
+</doc>

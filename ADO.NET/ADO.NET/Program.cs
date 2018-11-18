@@ -19,9 +19,9 @@ namespace ADO.NET
             implementation.ShowCountEmployeesOfCity("London");
             implementation.ShowMaxMinAndAvgAgeOfEmployeeOfCity("London");
             implementation.ShowMinMaxAvgForEveryCity();
-            implementation.ShowСitiesWithAvgGT60();
-            implementation.ShowEldestEmployee();
-            implementation.ShowThreeEldestEmployees();
+            implementation.ShowСitiesWithAvgAgeGT(60);
+            implementation.ShowOldestEmployee();
+            implementation.ShowOldestEmployees(3);
             implementation.CloseConnection();
             Console.ReadLine();
         }
