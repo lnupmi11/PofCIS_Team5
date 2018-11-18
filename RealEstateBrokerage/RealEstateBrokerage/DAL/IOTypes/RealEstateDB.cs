@@ -8,10 +8,24 @@ using System.Threading.Tasks;
 
 namespace RealEstateBrokerage.DAL.IOTypes
 {
+    /// <summary>
+    /// Class what implements logic of RealEstate table in Database.
+    /// </summary>
     public class RealEstateDB
     {
+        /// <summary>
+        /// Name of file where stores information about realEstates.
+        /// </summary>
         private readonly string fileName;
+
+        /// <summary>
+        /// Collection of realEstates.
+        /// </summary>
         private List<RealEstate> allRealEstate;
+
+        /// <summary>
+        /// Property what provide access to collection of realEstates.
+        /// </summary>
         public List<RealEstate> AllRealEstate
         {
             get
@@ -27,6 +41,11 @@ namespace RealEstateBrokerage.DAL.IOTypes
                 allRealEstate = value;
             }
         }
+
+        /// <summary>
+        /// Constructor wich takes one parameter - name of file where stores information about realEstates.
+        /// </summary>
+        /// <param name="_fileName"></param>
         public RealEstateDB(string _fileName)
         {
             allRealEstate = new List<RealEstate>();
@@ -34,6 +53,9 @@ namespace RealEstateBrokerage.DAL.IOTypes
             ReadFromFile();
         }
 
+        /// <summary>
+        /// Method wich read data about cities from file and write it in the collection of RealEstates. 
+        /// </summary>
         public void ReadFromFile()
         {
             string[] allLines = File.ReadAllLines(fileName);
@@ -46,6 +68,9 @@ namespace RealEstateBrokerage.DAL.IOTypes
             }
         }
 
+        /// <summary>
+        /// Method wich write data about realEstates from collection in the file. 
+        /// </summary>
         public void WriteToFile()
         {
             using (StreamWriter writer = new StreamWriter(fileName))

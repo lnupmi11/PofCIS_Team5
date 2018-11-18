@@ -8,10 +8,24 @@ using System.Threading.Tasks;
 
 namespace RealEstateBrokerage.DAL.IOTypes
 {
+    /// <summary>
+    /// Class what implements logic of Districts table in Database.
+    /// </summary>
     public class DistrictsDB
     {
+        /// <summary>
+        /// Name of file where stores information about cities.
+        /// </summary>
         private readonly string fileName;
+        
+        /// <summary>
+        /// Collection of districts.
+        /// </summary>
         private List<District> allDistricts;
+        
+        /// <summary>
+        /// Property what provide access to collection of districts.
+        /// </summary>
         public List<District> AllDistricts
         {
             get
@@ -27,6 +41,11 @@ namespace RealEstateBrokerage.DAL.IOTypes
                 allDistricts = value;
             }
         }
+        
+        /// <summary>
+        /// Constructor wich takes one parameter - name of file where stores information about districts.
+        /// </summary>
+        /// <param name="_fileName"></param>
         public DistrictsDB(string _fileName)
         {
             allDistricts = new List<District>();
@@ -34,6 +53,9 @@ namespace RealEstateBrokerage.DAL.IOTypes
             ReadFromFile();
         }
 
+        // <summary>
+        /// Method wich read data about districts from file and write it in the collection of Districts. 
+        /// </summary>
         public void ReadFromFile()
         {
             string[] allLines = File.ReadAllLines(fileName);
@@ -44,6 +66,9 @@ namespace RealEstateBrokerage.DAL.IOTypes
             }
         }
 
+        /// <summary>
+        /// Method wich write data about districts from collection in the file. 
+        /// </summary>
         public void WriteToFile()
         {
             using (StreamWriter writer = new StreamWriter(fileName))

@@ -22,7 +22,12 @@ namespace RealEstateBrokerage
     /// </summary>
     public partial class AddNewRealEstate : Window
     {
+        /// <summary>
+        /// Instance of class what contains business logic.
+        /// </summary>
         private RealEstateBrokerageManager _manager;
+
+        // Contains data what wil be added after add button click.
         private string _currCity;
         private string _currDistrict;
         private double _price = 0;
@@ -32,13 +37,19 @@ namespace RealEstateBrokerage
         private bool _views = false;
         private bool _penthouse = false;
 
-
+        /// <summary>
+        /// Constructor without parameters.
+        /// </summary>
+        /// <param name="mn"></param>
         public AddNewRealEstate(RealEstateBrokerageManager mn)
         {
             _manager = mn;
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Method what reads data from all TextBoxes.
+        /// </summary>
         private void ReadInput()
         {
             _price = Double.Parse(Price.Text);
@@ -51,6 +62,11 @@ namespace RealEstateBrokerage
             _currDistrict = District.Text;
         }
 
+        /// <summary>
+        /// Method what handles Add button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ReadInput();
