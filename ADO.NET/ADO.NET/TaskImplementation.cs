@@ -209,6 +209,35 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------\n\n");
         }
 
+        public void ShowCountEmployeesOfCity(string city)
+        {
+            string queryText = $"SELECT COUNT(EmployeeID) FROM Employees" +
+                $" WHERE City = '{city}'";
+
+            SqlCommand sqlCommand = new SqlCommand(queryText, connection);
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Fifth Task. employees count from London");
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine();
+
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine("City - Count ");
+                Console.WriteLine("-------------------------------------------");
+                reader.Read();
+                do
+                {
+                    Console.WriteLine($"{city} - {reader[0]}");
+                } while (reader.Read());
+            }
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("End of Fifth task");
+            Console.WriteLine("-------------------------------------------\n\n");
+        }
+
         public void ShowMaxMinAndAvgAgeOfEmployeeOfCity(string city)
         {
             string queryText = $"WITH Temp AS (SELECT * FROM Employees WHERE City = '{city}')"+
@@ -252,6 +281,125 @@ namespace ADO.NET
 
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of Sixth task");
+            Console.WriteLine("-------------------------------------------\n\n");
+        }
+
+        public void ShowMinMaxAvgForEveryCity()
+        {
+            string queryText = $"SELECT City, MIN({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate))," +
+                $" MAX({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate))," +
+                $" AVG({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate)) FROM Employees" +
+                $" GROUP BY City";
+
+            SqlCommand sqlCommand = new SqlCommand(queryText, connection);
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Seventh Task. city, min, max, avg");
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine();
+
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine(" Ciyt - Min - Max - Avg");
+                Console.WriteLine("-------------------------------------------");
+                reader.Read();
+                do
+                {
+                    Console.WriteLine($"{reader[0]} - {reader[1]} - {reader[2]}- {reader[3]}");
+                } while (reader.Read());
+            }
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("End of Seventh task");
+            Console.WriteLine("-------------------------------------------\n\n");
+        }
+
+        public void ShowСitiesWithAvgGT60()
+        {
+            string queryText = $"SELECT City, AVG({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate)) FROM Employees" +
+                  $" GROUP BY City" +
+                  $" HAVING AVG({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate)) >= 60";
+
+            SqlCommand sqlCommand = new SqlCommand(queryText, connection);
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Eighth Task. city, avg age >= 60");
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine();
+
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine("City - AvgAge");
+                Console.WriteLine("-------------------------------------------");
+                reader.Read();
+                do
+                {
+                    Console.WriteLine($"{reader[0]} - {reader[1]}");
+                } while (reader.Read());
+            }
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("End of Eighth task");
+            Console.WriteLine("-------------------------------------------\n\n");
+        }
+
+        public void ShowEldestEmployee()
+        {
+            string queryText = $"SELECT TOP 1 FirstName, LastName" +
+                " FROM Employees ORDER BY BirthDate";
+
+            SqlCommand sqlCommand = new SqlCommand(queryText, connection);
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Ninth Task. FirstName, LastName, eldest employee");
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine();
+
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine("FirsName - LastName");
+                Console.WriteLine("-------------------------------------------");
+                reader.Read();
+                do
+                {
+                    Console.WriteLine($"{reader[0]} - {reader[1]}");
+                } while (reader.Read());
+            }
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("End of Ninth task");
+            Console.WriteLine("-------------------------------------------\n\n");
+        }
+
+        public void ShowThreeEldestEmployees()
+        {
+            string queryText = $"SELECT TOP 3 FirstName, LastName, {DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate) " +
+                " FROM Employees ORDER BY BirthDate";
+
+            SqlCommand sqlCommand = new SqlCommand(queryText, connection);
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Tenth Task. FirstName, LastName, Age of 3 eldest employees");
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine();
+
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine("FirsName - LastName - Age ");
+                Console.WriteLine("-------------------------------------------");
+                reader.Read();
+                do
+                {
+                    Console.WriteLine($"{reader[0]} - {reader[1]} - {reader[2]}");
+                } while (reader.Read());
+            }
+
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("End of Tenth task");
             Console.WriteLine("-------------------------------------------\n\n");
         }
 

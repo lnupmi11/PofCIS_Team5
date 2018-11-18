@@ -16,7 +16,12 @@ namespace ADO.NET
             implementation.ShowInformationAboutEmployeeWithId(8);
             implementation.ShowListOfEmployeeFirstAndLastNamesFromCity("London");
             implementation.ShowListOfEmployeeFirstAndLastNamesWithAgeMoreThan(55);
+            implementation.ShowCountEmployeesOfCity("London");
             implementation.ShowMaxMinAndAvgAgeOfEmployeeOfCity("London");
+            implementation.ShowMinMaxAvgForEveryCity();
+            implementation.ShowСitiesWithAvgGT60();
+            implementation.ShowEldestEmployee();
+            implementation.ShowThreeEldestEmployees();
             implementation.CloseConnection();
             Console.ReadLine();
         }
