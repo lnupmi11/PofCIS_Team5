@@ -1,0 +1,7 @@
+1 1 Soho
+2 1 GreenVillage
+3 2 Marais
+4 2 Latin
+5 3 Collatino
+6 3 Parioli
+7 4 Chornovola
