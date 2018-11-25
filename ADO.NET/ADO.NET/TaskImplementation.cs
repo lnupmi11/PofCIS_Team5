@@ -13,7 +13,7 @@ namespace ADO.NET
     /// <summary>
     /// Class that implements quries to db.
     /// </summary>
-    class TaskImplementation
+    public class TaskImplementation
     {
         string connectionString;
         SqlConnection connection;
@@ -23,7 +23,7 @@ namespace ADO.NET
         /// </summary>
         public TaskImplementation()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["MainConnection"].ToString();
+            connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Northwind;";
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace ADO.NET
         /// Function to query full information about employee
         /// </summary>
         /// <param name="id">employee's id</param>
-        public void ShowInformationAboutEmployeeWithId(int id)
+        public string ShowInformationAboutEmployeeWithId(int id)
         {
             string queryText = $"SELECT * FROM [Employees] " +
                 $"WHERE EmployeeID = {id}";
@@ -91,6 +91,7 @@ namespace ADO.NET
             List<string> listacolumnas = new List<string>();
             SqlCommand sqlCommand = new SqlCommand(queryText, connection);
 
+            string result = string.Empty;
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("Firs Task data about employee whoose id equels 8");
             Console.WriteLine("-------------------------------------------");
@@ -122,14 +123,16 @@ namespace ADO.NET
             Console.WriteLine("Employee data");
             Console.WriteLine("-------------------------------------------");
 
-            for(int i=0;i<listacolumnas.Count;i++)
+            for (int i = 0; i < listacolumnas.Count; i++)
             {
-                Console.WriteLine($"{listacolumnas[i]}: {listOfData[i+1]}");
+                result += $"{listacolumnas[i]}: {listOfData[i + 1]} \n";
+                Console.WriteLine($"{listacolumnas[i]}: {listOfData[i + 1]}");
             }
 
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of first task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
 
         }
 
@@ -139,7 +142,7 @@ namespace ADO.NET
         /// first character in first and last names
         /// </summary>
         /// <param name="startChar">firt character</param>
-        public void ShowListOfEmployeeFirstAndLastNamesWhichStartsOn(char startChar)
+        public string ShowListOfEmployeeFirstAndLastNamesWhichStartsOn(char startChar)
         {
             string queryText = $"SELECT FirstName, LastName FROM [Employees] " +
                 $"WHERE FirstName LIKE '{startChar}%'";//+
@@ -151,6 +154,7 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
 
+            string result = string.Empty;
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 Console.WriteLine("-------------------------------------------");
@@ -159,6 +163,7 @@ namespace ADO.NET
                 reader.Read();
                 do
                 {
+                    result += $"{reader[0]} - {reader[1]}\n";
                     Console.WriteLine($"{reader[0]} - {reader[1]}");
                 } while (reader.Read());
             }
@@ -166,13 +171,14 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of third task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
         }
 
         /// <summary>
         /// Function to query all employees from same city
         /// </summary>
         /// <param name="city">city name</param>
-        public void ShowListOfEmployeeFirstAndLastNamesFromCity(string city)
+        public string ShowListOfEmployeeFirstAndLastNamesFromCity(string city)
         {
             string queryText = $"SELECT FirstName, LastName FROM [Employees] " +
                 $"WHERE City = '{city}'";//+
@@ -183,7 +189,7 @@ namespace ADO.NET
             Console.WriteLine("Second Task All employees who are from London");
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
-
+            string result = string.Empty;
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 Console.WriteLine("-------------------------------------------");
@@ -192,6 +198,7 @@ namespace ADO.NET
                 reader.Read();
                 do
                 {
+                    result += $"{reader[0]} - {reader[1]}\n";
                     Console.WriteLine($"{reader[0]} - {reader[1]}");
                 } while (reader.Read());
             }
@@ -199,6 +206,7 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of Second task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
         }
 
         /// <summary>
@@ -206,7 +214,7 @@ namespace ADO.NET
         /// with age more then param
         /// </summary>
         /// <param name="age">minimum age</param>
-        public void ShowListOfEmployeeFirstAndLastNamesWithAgeMoreThan(int age)
+        public string ShowListOfEmployeeFirstAndLastNamesWithAgeMoreThan(int age)
         {
             string queryText = $"SELECT FirstName, LastName, {DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate) FROM [Employees] " +
                 $"WHERE {DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate) > {age} " +
@@ -219,6 +227,8 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
 
+            string result = string.Empty;
+
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 Console.WriteLine("-------------------------------------------");
@@ -227,6 +237,7 @@ namespace ADO.NET
                 reader.Read();
                 do
                 {
+                    result += $"{reader[0]} - {reader[1]} - {reader[2]}\n";
                     Console.WriteLine($"{reader[0]} - {reader[1]} - {reader[2]}");
                 } while (reader.Read());
             }
@@ -234,6 +245,7 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of Fourth task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
         }
 
         /// <summary>
@@ -241,7 +253,7 @@ namespace ADO.NET
         /// from same city
         /// </summary>
         /// <param name="city">city name</param>
-        public void ShowCountEmployeesOfCity(string city)
+        public string ShowCountEmployeesOfCity(string city)
         {
             string queryText = $"SELECT COUNT(EmployeeID) FROM Employees" +
                 $" WHERE City = '{city}'";
@@ -252,7 +264,7 @@ namespace ADO.NET
             Console.WriteLine("Fifth Task. employees count from London");
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
-
+            string result = string.Empty;
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 Console.WriteLine("-------------------------------------------");
@@ -261,6 +273,7 @@ namespace ADO.NET
                 reader.Read();
                 do
                 {
+                    result += $"{city} - {reader[0]}\n";
                     Console.WriteLine($"{city} - {reader[0]}");
                 } while (reader.Read());
             }
@@ -268,6 +281,7 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of Fifth task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
         }
 
         /// <summary>
@@ -275,9 +289,9 @@ namespace ADO.NET
         /// employees from same city
         /// </summary>
         /// <param name="name">city name</param>
-        public void ShowMaxMinAndAvgAgeOfEmployeeOfCity(string city)
+        public string ShowMaxMinAndAvgAgeOfEmployeeOfCity(string city)
         {
-            string queryText = $"WITH Temp AS (SELECT * FROM Employees WHERE City = '{city}')"+
+            string queryText = $"WITH Temp AS (SELECT * FROM Employees WHERE City = '{city}')" +
                    "SELECT MAX(BirthDate), MIN(BirthDate) FROM Temp ";
 
             SqlCommand sqlCommand = new SqlCommand(queryText, connection);
@@ -286,7 +300,7 @@ namespace ADO.NET
             Console.WriteLine("Sixth Task. MIN , MAX age of employee from London");
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
-
+            string result = string.Empty;
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 Console.WriteLine("-------------------------------------------");
@@ -297,11 +311,11 @@ namespace ADO.NET
                 {
                     int curYear = int.Parse(DateTime.Now.ToString("yyyy"));
 
-                    List<char> fullDate = reader[0].ToString().TakeWhile(symb=> symb != ' ').ToList();
+                    List<char> fullDate = reader[0].ToString().TakeWhile(symb => symb != ' ').ToList();
                     string date = string.Empty;
-                    for (int i = 4; i > 0 ; i--)
+                    for (int i = 4; i > 0; i--)
                     {
-                         date += fullDate[fullDate.Count - i];
+                        date += fullDate[fullDate.Count - i];
                     }
                     int maxYear = int.Parse(date);
                     fullDate.Clear();
@@ -313,19 +327,21 @@ namespace ADO.NET
                     }
                     int minYear = int.Parse(date);
                     Console.WriteLine($"{curYear - maxYear} - {curYear - minYear}");
+                    result += $"{curYear - maxYear} - {curYear - minYear}\n";
                 } while (reader.Read());
             }
 
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of Sixth task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
         }
 
         /// <summary>
         /// Function to query min, max, average age of
         /// employees of every city 
         /// </summary>
-        public void ShowMinMaxAvgForEveryCity()
+        public string ShowMinMaxAvgForEveryCity()
         {
             string queryText = $"SELECT City, MIN({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate))," +
                 $" MAX({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate))," +
@@ -339,6 +355,8 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
 
+            string result = string.Empty;
+
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 Console.WriteLine("-------------------------------------------");
@@ -348,12 +366,14 @@ namespace ADO.NET
                 do
                 {
                     Console.WriteLine($"{reader[0]} - {reader[1]} - {reader[2]}- {reader[3]}");
+                    result += $"{reader[0]} - {reader[1]} - {reader[2]}- {reader[3]}\n";
                 } while (reader.Read());
             }
 
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of Seventh task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
         }
 
         /// <summary>
@@ -361,7 +381,7 @@ namespace ADO.NET
         /// average age greater then param
         /// </summary>
         /// <param name="age">minimum age</param>
-        public void ShowСitiesWithAvgAgeGT(int age)
+        public string ShowСitiesWithAvgAgeGT(int age)
         {
             string queryText = $"SELECT City, AVG({DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate)) FROM Employees" +
                   $" GROUP BY City" +
@@ -374,6 +394,8 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
 
+            string result = string.Empty;
+
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 Console.WriteLine("-------------------------------------------");
@@ -382,6 +404,7 @@ namespace ADO.NET
                 reader.Read();
                 do
                 {
+                    result += $"{reader[0]} - {reader[1]}\n";
                     Console.WriteLine($"{reader[0]} - {reader[1]}");
                 } while (reader.Read());
             }
@@ -389,13 +412,14 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of Eighth task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
         }
 
         /// <summary>
         /// Function to query oldest employee
         /// first name and last name
         /// </summary>
-        public void ShowOldestEmployee()
+        public string ShowOldestEmployee()
         {
             string queryText = $"SELECT TOP 1 FirstName, LastName" +
                 " FROM Employees ORDER BY BirthDate";
@@ -407,6 +431,8 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
 
+            string result = string.Empty;
+
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 Console.WriteLine("-------------------------------------------");
@@ -415,6 +441,7 @@ namespace ADO.NET
                 reader.Read();
                 do
                 {
+                    result += $"{reader[0]} - {reader[1]}\n";
                     Console.WriteLine($"{reader[0]} - {reader[1]}");
                 } while (reader.Read());
             }
@@ -422,6 +449,7 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of Ninth task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
         }
 
         /// <summary>
@@ -429,7 +457,7 @@ namespace ADO.NET
         /// first name and last name
         /// </summary>
         /// <param name="num">Number of oldest people</param>
-        public void ShowOldestEmployees(int num)
+        public string ShowOldestEmployees(int num)
         {
             string queryText = $"SELECT TOP {num} FirstName, LastName, {DateTime.Now.ToString("yyyy")} - datepart(yyyy,BirthDate) " +
                 " FROM Employees ORDER BY BirthDate";
@@ -441,6 +469,8 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
 
+            string result = string.Empty;
+
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 Console.WriteLine("-------------------------------------------");
@@ -449,6 +479,7 @@ namespace ADO.NET
                 reader.Read();
                 do
                 {
+                    result += $"{reader[0]} - {reader[1]} - {reader[2]}\n";
                     Console.WriteLine($"{reader[0]} - {reader[1]} - {reader[2]}");
                 } while (reader.Read());
             }
@@ -456,6 +487,7 @@ namespace ADO.NET
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("End of Tenth task");
             Console.WriteLine("-------------------------------------------\n\n");
+            return result;
         }
     }
 }
