@@ -61,5 +61,60 @@ namespace ADOTests
             result = result.Substring(0, result.IndexOf('\n'));
             Assert.IsTrue(result == "London - 4");
         }
+
+        [TestMethod]
+        public void ShowMaxMinAndAvgAgeOfEmployeeOfCity()
+        {
+            TaskImplementation implementation = new TaskImplementation();
+            implementation.OpenConnection();
+            string result = implementation.ShowMaxMinAndAvgAgeOfEmployeeOfCity("London");
+            implementation.CloseConnection();
+            result = result.Substring(0, result.IndexOf('\n'));
+            Assert.IsTrue(result == "52 - 63");
+        }
+
+        [TestMethod]
+        public void ShowMinMaxAvgForEveryCity()
+        {
+            TaskImplementation implementation = new TaskImplementation();
+            implementation.OpenConnection();
+            string result = implementation.ShowMinMaxAvgForEveryCity();
+            implementation.CloseConnection();
+            result = result.Substring(0, result.IndexOf('\n'));
+            Assert.IsTrue(result == "Kirkland - 55 - 55- 55");
+        }
+
+        [TestMethod]
+        public void ShowСitiesWithAvgAgeGT()
+        {
+            TaskImplementation implementation = new TaskImplementation();
+            implementation.OpenConnection();
+            string result = implementation.ShowСitiesWithAvgAgeGT(60);
+            implementation.CloseConnection();
+            result = result.Substring(0, result.IndexOf('\n'));
+            Assert.IsTrue(result == "Redmond - 81");
+        }
+
+        [TestMethod]
+        public void ShowOldestEmployee()
+        {
+            TaskImplementation implementation = new TaskImplementation();
+            implementation.OpenConnection();
+            string result = implementation.ShowOldestEmployee();
+            implementation.CloseConnection();
+            result = result.Substring(0, result.IndexOf('\n'));
+            Assert.IsTrue(result == "Margaret - Peacock");
+        }
+
+        [TestMethod]
+        public void ShowOldestEmployees()
+        {
+            TaskImplementation implementation = new TaskImplementation();
+            implementation.OpenConnection();
+            string result = implementation.ShowOldestEmployees(3);
+            implementation.CloseConnection();
+            result = result.Substring(0, result.IndexOf('\n'));
+            Assert.IsTrue(result == "Margaret - Peacock - 81");
+        }
     }
 }
