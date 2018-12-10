@@ -27,6 +27,16 @@ namespace RealEstateBrokerage.DAL.DataTypes
         public string Name { get; set; }
 
         /// <summary>
+        /// Parameterless constructor
+        /// </summary>
+        public District()
+        {
+            Id = 0;
+            CityId = 0;
+            Name = "";
+        }
+
+        /// <summary>
         /// Constructor with parameters.
         /// </summary>
         /// <param name="id"></param>

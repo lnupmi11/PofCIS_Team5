@@ -4,27 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealEstateBrokerage.DAL.DataTypes;
-using RealEstateBrokerage.DAL.IOTypes;
+using RealEstateBrokerage.DAL.Interfaces;
+using RealEstateBrokerage.DAL.EF;
+using RealEstateBrokerage.DAL.Repositories;
 
 namespace RealEstateBrokerage.BLL
 {
     public class RealEstateBrokerageManager
     {
-        /// <summary>
-        /// City table in DB.
-        /// </summary>
-        public CitiesDB Cities { get; }
-        /// <summary>
-        /// Districts table in DB.
-        /// </summary>
-        public DistrictsDB Districts { get; }
-        /// <summary>
-        /// RealEstate table in DB.
-        /// </summary>
-        public RealEstateDB RealEstate { get; }
-        /// <summary>
-        /// List what contain information about flats after search.
-        /// </summary>
+        
+        public UnitOfWork UnitOfWork { get; set; }
+
         private List<RealEstate> _serchResult;
 
         /// <summary>
@@ -32,9 +22,7 @@ namespace RealEstateBrokerage.BLL
         /// </summary>
         public RealEstateBrokerageManager()
         {
-            Cities = new CitiesDB("../../DAL/InputData/CitiesData.txt");
-            Districts = new DistrictsDB("../../DAL/InputData/DistrictsData.txt");
-            RealEstate = new RealEstateDB("../../DAL/InputData/RealEstateData.txt");
+            UnitOfWork = new UnitOfWork();
         }
 
         /// <summary>
@@ -44,7 +32,7 @@ namespace RealEstateBrokerage.BLL
         /// <returns></returns>
         public District GetDistrictById(int cityId)
         {
-            return Districts.AllDistricts.Where(x => x.Id == cityId).FirstOrDefault();
+            return UnitOfWork.Districts.GetAll().Where(x => x.Id == cityId).FirstOrDefault();
         }
         
         /// <summary>
@@ -54,7 +42,7 @@ namespace RealEstateBrokerage.BLL
         /// <returns></returns>
         public District GetDistrictByName(string name)
         {
-            return Districts.AllDistricts.Where(x => x.Name == name).FirstOrDefault();
+            return UnitOfWork.Districts.GetAll().Where(x => x.Name == name).FirstOrDefault();
         }
         
         /// <summary>
@@ -64,7 +52,7 @@ namespace RealEstateBrokerage.BLL
         /// <returns></returns>
         public List<District> GetDistrictsByCityId(int id)
         {
-            return Districts.AllDistricts.Where(x => x.CityId == id).ToList();
+            return UnitOfWork.Districts.GetAll().Where(x => x.CityId == id).ToList();
         }
 
         /// <summary>
@@ -74,7 +62,7 @@ namespace RealEstateBrokerage.BLL
         /// <returns></returns>
         public City GetCityById(int cityId)
         {
-            return Cities.AllCities.Where(x => x.Id == cityId).FirstOrDefault();
+            return UnitOfWork.Cities.GetAll().Where(x => x.Id == cityId).FirstOrDefault();
         }
 
         /// <summary>
@@ -84,7 +72,7 @@ namespace RealEstateBrokerage.BLL
         /// <returns></returns>
         public City GetCityByName(string name)
         {
-            return Cities.AllCities.Where(x => x.Name == name).FirstOrDefault();
+            return UnitOfWork.Cities.GetAll().Where(x => x.Name == name).FirstOrDefault();
         }
 
         /// <summary>
@@ -94,7 +82,7 @@ namespace RealEstateBrokerage.BLL
         /// <returns></returns>
         public RealEstate GetRealEstateById(int cityId)
         {
-            return RealEstate.AllRealEstate.Where(x => x.Id == cityId).FirstOrDefault();
+            return UnitOfWork.RealEstates.GetAll().Where(x => x.Id == cityId).FirstOrDefault();
         }
 
         /// <summary>
@@ -113,22 +101,22 @@ namespace RealEstateBrokerage.BLL
             City city = GetCityByName(currCity);
             if (city == null)
             {
-                int id = Cities.AllCities.Max(c => c.Id);
+                int id = UnitOfWork.Cities.GetAll().Max(c => c.Id);
                 city = new City(id + 1, currCity);
-                Cities.AllCities.Add(city);
-                Cities.WriteToFile();
+                UnitOfWork.Cities.Create(city);
+                UnitOfWork.Save();
             }
             District distric = GetDistrictByName(currDistrict);
             if(distric == null)
             {
-                int id = Districts.AllDistricts.Max(dis => dis.Id);
+                int id = UnitOfWork.Cities.GetAll().Max(dis => dis.Id);
                 distric = new District(id + 1, city.Id, currDistrict );
-                Districts.AllDistricts.Add(distric);
-                Districts.WriteToFile();
+                UnitOfWork.Districts.Create(distric);
+                UnitOfWork.Save();
             }
-            int accId = RealEstate.AllRealEstate.Max(item => item.Id);
-            RealEstate.AllRealEstate.Add(new DAL.DataTypes.RealEstate(accId + 1, city.Id, distric.Id, rooms, baths, terrace, views, penthouse, price));
-            RealEstate.WriteToFile();
+            int accId = UnitOfWork.RealEstates.GetAll().Max(item => item.Id);
+            UnitOfWork.RealEstates.Create(new DAL.DataTypes.RealEstate(accId + 1, city.Id, distric.Id, rooms, baths, terrace, views, penthouse, price));
+            UnitOfWork.Save();
         }
 
         /// <summary>
@@ -138,7 +126,7 @@ namespace RealEstateBrokerage.BLL
         /// <returns></returns>
         public List<RealEstate> GetRealEstateByCityId(int id)
         {
-            return RealEstate.AllRealEstate.Where(x => x.CityId == id).ToList();
+            return UnitOfWork.RealEstates.GetAll().Where(x => x.CityId == id).ToList();
         }
 
         /// <summary>
@@ -148,7 +136,7 @@ namespace RealEstateBrokerage.BLL
         /// <returns></returns>
         public List<RealEstate> GetRealEstateByDistrictId(int id)
         {
-            return RealEstate.AllRealEstate.Where(x => x.DistrictId == id).ToList();
+            return UnitOfWork.RealEstates.GetAll().Where(x => x.DistrictId == id).ToList();
         }
 
         /// <summary>
@@ -164,7 +152,7 @@ namespace RealEstateBrokerage.BLL
         /// <returns></returns>
         public List<RealEstate> SearchRealEstates(double minPrice, double maxPrice, int cityId, int districtId, bool views, bool terrace, bool penthouse)
         {
-            _serchResult = RealEstate.AllRealEstate.Where(x => x.Price >= minPrice && x.Price <= maxPrice
+            _serchResult = UnitOfWork.RealEstates.GetAll().Where(x => x.Price >= minPrice && x.Price <= maxPrice
             && x.CityId == cityId && x.DistrictId == districtId && x.IsWithViews == views
             && x.IsWithTerrace == terrace && x.IsPenthouse == penthouse).ToList();
 
@@ -177,9 +165,9 @@ namespace RealEstateBrokerage.BLL
         /// <param name="id"></param>
         internal void DeleteById(int id)
         {
-            RealEstate realEstate = RealEstate.AllRealEstate.Where(item => item.Id == id).FirstOrDefault();
-            RealEstate.AllRealEstate.Remove(realEstate);
-            RealEstate.WriteToFile();
+            RealEstate realEstate = UnitOfWork.RealEstates.GetAll().Where(item => item.Id == id).FirstOrDefault();
+            UnitOfWork.RealEstates.Remove(realEstate);
+            UnitOfWork.Save();
         }
     }
 }

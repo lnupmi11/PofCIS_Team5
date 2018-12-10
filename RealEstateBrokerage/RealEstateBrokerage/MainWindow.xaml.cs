@@ -47,8 +47,8 @@ namespace RealEstateBrokerage
         {
             _manager = new RealEstateBrokerageManager();
             InitializeComponent();
-            CitiesCB.ItemsSource = _manager.Cities.AllCities.Select(x => x.Name);
-            FillTable(_manager.RealEstate.AllRealEstate);
+            CitiesCB.ItemsSource = _manager.UnitOfWork.Cities.GetAll().Select(x => x.Name);
+            FillTable(_manager.UnitOfWork.RealEstates.GetAll());
         }
         /// <summary>
         /// Method what handles selection of cityCB.
@@ -101,7 +101,7 @@ namespace RealEstateBrokerage
         /// Method what fills table of flats by data of list realEstate.
         /// </summary>
         /// <param name="realEstate">List of RealEstate which contains data about flats</param>
-        private void FillTable(List<RealEstate> realEstate)
+        private void FillTable(IEnumerable<RealEstate> realEstate)
         {
             Table.Items.Clear();
             foreach (var re in realEstate)
@@ -121,7 +121,7 @@ namespace RealEstateBrokerage
         {
             AddNewRealEstate tmp = new AddNewRealEstate(_manager);
             tmp.ShowDialog();
-            FillTable(_manager.RealEstate.AllRealEstate);
+            FillTable(_manager.UnitOfWork.RealEstates.GetAll());
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace RealEstateBrokerage
         {
             RealEstateViewModel realEstateView = (RealEstateViewModel)Table.SelectedItem;
             _manager.DeleteById(realEstateView.Id);
-            FillTable(_manager.RealEstate.AllRealEstate);
+            FillTable(_manager.UnitOfWork.RealEstates.GetAll());
         }
     }
 

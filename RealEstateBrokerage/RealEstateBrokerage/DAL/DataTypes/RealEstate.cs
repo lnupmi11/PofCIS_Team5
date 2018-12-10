@@ -80,6 +80,21 @@ namespace RealEstateBrokerage.DAL.DataTypes
             IsPenthouse = isPenthouse;
             Price = price;
         }
+        /// <summary>
+        /// Parameterless constructor
+        /// </summary>
+        public RealEstate()
+        {
+            Id = 0;
+            CityId = 0;
+            DistrictId = 0;
+            NumOfRooms = 0;
+            NumOfBaths = 0;
+            IsWithTerrace = false;
+            IsWithViews = false;
+            IsPenthouse = false;
+            Price = 0;
+        }
 
         /// <summary>
         /// Method what write all data about realEstate in string and returns it.
